@@ -7,3 +7,10 @@
 
 ## Exchange functional requirements:
 - signup --> KYC via aadhar (we skip this part Or OTP authentication) --> Balance Page (show your balance, add balance, withdraw assets in INR.)
+
+## How does an exchange work:
+- users can sign up/in.
+- user can place an order.
+  1. `limit order`
+  2. `Market order`
+- user can see their `balances`, their `open orders`.
