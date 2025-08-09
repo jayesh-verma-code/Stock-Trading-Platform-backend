@@ -42,6 +42,17 @@ const {UserModel} = require('./model/UserModel');
 const port = process.env.PORT || 8080;
 const uri = process.env.MONGO_URL;
 
+app.use((req, res, next) => {
+  const start = Date.now();
+
+  res.on('finish', () => {
+    const latency = Date.now() - start;
+    console.log(`${req.method} ${req.originalUrl} - ${latency}ms`);
+  });
+
+  next();
+});
+
 // temparary data for holdings
 // app.get("/getholding", async(req,res) => {
 //   const holdingData = [
@@ -197,6 +208,7 @@ const uri = process.env.MONGO_URL;
 
 app.get("/allHoldings", async(req, res) => {
   let allHoldings = await HoldingsModel.find({});
+  // let allHoldings = allHoldingData;
   res.json(allHoldings);
 });
 
